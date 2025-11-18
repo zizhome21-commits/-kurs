@@ -156,7 +156,7 @@
         
         .pricing-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
@@ -324,7 +324,7 @@
         
         .reviews-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
         
@@ -355,30 +355,443 @@
             color: #667eea;
         }
         
+        .webinar-inner-box {
+            background: rgba(255,255,255,0.25);
+            padding: 35px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        
+        .webinar-gift-list {
+            list-style: none;
+            padding: 0;
+            margin: 25px 0;
+            text-align: left;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .webinar-gift-list li {
+            padding: 15px 0;
+            font-size: 1.25em;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .webinar-gift-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .webinar-attention-box {
+            background: rgba(255,255,255,0.2);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 3px dashed rgba(255,255,255,0.5);
+        }
+        
+        .webinar-info-box {
+            background: rgba(255,255,255,0.2);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* УЛУЧШЕННАЯ МОБИЛЬНАЯ АДАПТАЦИЯ */
+        
+        /* Планшеты и маленькие ноутбуки */
+        @media (max-width: 1024px) {
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Планшеты в портретной ориентации */
         @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
             .header h1 {
                 font-size: 1.8em;
+            }
+            
+            .header p {
+                font-size: 1em;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .course-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .course-icon {
+                font-size: 2.5em;
+                margin-right: 0;
+                margin-bottom: 15px;
             }
             
             .course-title h2 {
                 font-size: 1.5em;
             }
             
-            .content, .pricing-section, .reviews-section {
+            .course-info {
+                gap: 10px;
+            }
+            
+            .info-badge {
+                font-size: 0.9em;
+                padding: 6px 12px;
+            }
+            
+            .module {
+                padding: 20px;
+            }
+            
+            .module h3 {
+                font-size: 1.3em;
+            }
+            
+            .module li {
+                font-size: 0.95em;
+                padding: 10px 0;
+                padding-left: 25px;
+            }
+            
+            .pricing-section {
                 padding: 30px 20px;
             }
             
-            .pricing-cards, .reviews-grid {
-                grid-template-columns: 1fr;
+            .pricing-header h2 {
+                font-size: 2em;
+            }
+            
+            .pricing-header p {
+                font-size: 1em;
+            }
+            
+            .price-card {
+                padding: 25px;
+            }
+            
+            .price-card h3 {
+                font-size: 1.5em;
+            }
+            
+            .includes-box {
+                padding: 20px;
+            }
+            
+            .main-price {
+                padding: 25px;
+            }
+            
+            .main-price .price-value {
+                font-size: 2em;
+            }
+            
+            .webinar-section {
+                padding: 25px 20px;
+            }
+            
+            .webinar-section h3 {
+                font-size: 1.5em;
+            }
+            
+            .webinar-section p {
+                font-size: 1.1em;
+            }
+            
+            .webinar-inner-box {
+                padding: 20px;
+            }
+            
+            .webinar-gift-list li {
+                font-size: 1.1em;
+                padding: 12px 0;
             }
             
             .webinar-buttons {
                 flex-direction: column;
+                gap: 15px;
             }
             
             .btn {
                 width: 100%;
                 justify-content: center;
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+            
+            .reviews-section {
+                padding: 30px 20px;
+            }
+            
+            .reviews-header h2 {
+                font-size: 2em;
+            }
+            
+            .reviews-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .divider {
+                margin: 40px 0;
+            }
+        }
+        
+        /* Мобильные телефоны */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px 5px;
+            }
+            
+            .container {
+                border-radius: 15px;
+            }
+            
+            .header {
+                padding: 20px 15px;
+                border-radius: 15px 15px 0 0;
+            }
+            
+            .header h1 {
+                font-size: 1.5em;
+                line-height: 1.3;
+            }
+            
+            .header p {
+                font-size: 0.9em;
+            }
+            
+            .content {
+                padding: 20px 15px;
+            }
+            
+            .course-icon {
+                font-size: 2em;
+            }
+            
+            .course-title h2 {
+                font-size: 1.3em;
+            }
+            
+            .info-badge {
+                font-size: 0.85em;
+                padding: 5px 10px;
+            }
+            
+            .module {
+                padding: 15px;
+                border-radius: 10px;
+            }
+            
+            .module h3 {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+            }
+            
+            .module li {
+                font-size: 0.9em;
+                padding: 8px 0;
+                padding-left: 22px;
+            }
+            
+            .module li:before {
+                font-size: 1em;
+            }
+            
+            .pricing-section {
+                padding: 20px 15px;
+                border-radius: 10px;
+            }
+            
+            .pricing-header {
+                margin-bottom: 30px;
+            }
+            
+            .pricing-header h2 {
+                font-size: 1.6em;
+            }
+            
+            .pricing-header p {
+                font-size: 0.95em;
+            }
+            
+            .pricing-cards {
+                gap: 25px;
+            }
+            
+            .price-card {
+                padding: 20px;
+                border-radius: 15px;
+            }
+            
+            .price-card-icon {
+                font-size: 3em;
+            }
+            
+            .price-card h3 {
+                font-size: 1.3em;
+                margin-bottom: 20px;
+            }
+            
+            .includes-box {
+                padding: 15px;
+            }
+            
+            .includes-box h4 {
+                font-size: 1.1em;
+            }
+            
+            .includes-box li {
+                font-size: 0.95em;
+                padding: 8px 0;
+                padding-left: 25px;
+            }
+            
+            .main-price {
+                padding: 20px;
+            }
+            
+            .main-price .price-label {
+                font-size: 1em;
+            }
+            
+            .main-price .price-value {
+                font-size: 1.6em;
+            }
+            
+            .webinar-section {
+                padding: 20px 15px;
+                border-radius: 15px;
+            }
+            
+            .webinar-section h3 {
+                font-size: 1.3em;
+                margin-bottom: 10px;
+            }
+            
+            .webinar-section p {
+                font-size: 1em;
+                margin-bottom: 15px;
+            }
+            
+            .webinar-inner-box {
+                padding: 15px;
+                margin: 20px 0;
+            }
+            
+            .webinar-inner-box p:first-child {
+                font-size: 1.5em !important;
+            }
+            
+            .webinar-inner-box p:nth-child(2) {
+                font-size: 1.1em !important;
+            }
+            
+            .webinar-gift-list {
+                margin: 15px 0;
+            }
+            
+            .webinar-gift-list li {
+                font-size: 1em;
+                padding: 10px 0;
+            }
+            
+            .webinar-attention-box {
+                padding: 20px 15px;
+            }
+            
+            .webinar-attention-box p {
+                font-size: 1em !important;
+            }
+            
+            .webinar-info-box {
+                padding: 15px;
+            }
+            
+            .webinar-info-box p {
+                font-size: 0.95em !important;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.95em;
+                gap: 8px;
+            }
+            
+            .reviews-section {
+                padding: 20px 15px;
+            }
+            
+            .reviews-header {
+                margin-bottom: 30px;
+            }
+            
+            .reviews-header h2 {
+                font-size: 1.6em;
+            }
+            
+            .reviews-header p {
+                font-size: 0.95em;
+            }
+            
+            .review-card {
+                padding: 20px;
+            }
+            
+            .review-text {
+                font-size: 0.95em;
+            }
+            
+            .divider {
+                margin: 30px 0;
+            }
+        }
+        
+        /* Очень маленькие экраны */
+        @media (max-width: 360px) {
+            .header h1 {
+                font-size: 1.3em;
+            }
+            
+            .course-title h2 {
+                font-size: 1.2em;
+            }
+            
+            .module h3 {
+                font-size: 1.1em;
+            }
+            
+            .pricing-header h2 {
+                font-size: 1.4em;
+            }
+            
+            .price-card h3 {
+                font-size: 1.2em;
+            }
+            
+            .main-price .price-value {
+                font-size: 1.4em;
+            }
+            
+            .webinar-section h3 {
+                font-size: 1.2em;
             }
         }
     </style>
@@ -546,21 +959,21 @@
                     <h3>🎥 ЭКСКЛЮЗИВ ВЕБИНАР!</h3>
                     <p style="font-size: 1.5em; font-weight: bold; margin-bottom: 20px;">Фақат Telegram каналимиз аъзолари учун 🔒</p>
                     
-                    <div style="background: rgba(255,255,255,0.25); padding: 35px; border-radius: 20px; margin: 30px 0;">
+                    <div class="webinar-inner-box">
                         <p style="font-size: 2em; font-weight: bold; margin-bottom: 20px;">🎁 БИРИНЧИ 5 ТА ИШТИРОКЧИГА</p>
                         <p style="font-size: 1.4em; margin-bottom: 25px; line-height: 1.4;">
                             Рад эта олмайдиган эксклюзив таклиф!
                         </p>
                         
-                        <ul style="list-style: none; padding: 0; margin: 25px 0; text-align: left; max-width: 700px; margin-left: auto; margin-right: auto;">
-                            <li style="padding: 15px 0; font-size: 1.25em; border-bottom: 1px solid rgba(255,255,255,0.3);">✨ Катта чегирма тўлиқ курсга</li>
-                            <li style="padding: 15px 0; font-size: 1.25em; border-bottom: 1px solid rgba(255,255,255,0.3);">✨ Қимматбаҳо бонуслар</li>
-                            <li style="padding: 15px 0; font-size: 1.25em; border-bottom: 1px solid rgba(255,255,255,0.3);">✨ 500,000+ сўм қийматдаги совғалар</li>
-                            <li style="padding: 15px 0; font-size: 1.25em;">✨ Шахсий консультация</li>
+                        <ul class="webinar-gift-list">
+                            <li>✨ Катта чегирма тўлиқ курсга</li>
+                            <li>✨ Қимматбаҳо бонуслар</li>
+                            <li>✨ 500,000+ сўм қийматдаги совғалар</li>
+                            <li>✨ Шахсий консультация</li>
                         </ul>
                     </div>
                     
-                    <div style="background: rgba(255,255,255,0.2); padding: 30px; border-radius: 15px; margin: 30px 0; border: 3px dashed rgba(255,255,255,0.5);">
+                    <div class="webinar-attention-box">
                         <p style="font-size: 1.5em; font-weight: bold; margin-bottom: 15px;">⚠️ ДИҚҚАТ!</p>
                         <p style="font-size: 1.2em; line-height: 1.5;">
                             Аниқ шартлар ва нархлар <strong>ФАҚАТ ВЕБИНАРДА</strong> эълон қилинади!
@@ -570,7 +983,7 @@
                         </p>
                     </div>
                     
-                    <div style="background: rgba(255,255,255,0.2); padding: 25px; border-radius: 15px; margin: 30px 0;">
+                    <div class="webinar-info-box">
                         <p style="font-size: 1.2em; margin-bottom: 10px;">📺 Вебинар ҳаволасини фақат <strong>Telegram каналимиз аъзолари</strong> олади</p>
                         <p style="font-size: 1.1em; margin-top: 10px;">🔒 YouTube'да махфий режимда - ҳавола бўлмаса кўриб бўлмайди</p>
                         <p style="font-size: 1.2em; margin-top: 15px; font-weight: bold;">🎫 Махсус промокод вебинарда берилади!</p>
@@ -586,16 +999,9 @@
                     </div>
                     
                     <p style="margin-top: 35px; font-size: 1.3em; font-weight: bold; animation: pulse 2s infinite;">
-                        ⏰ Фақат 48 соат  МАХСУС ТАКЛИФ - шошилинг!
+                        ⏰ Фақат 48 соат МАХСУС ТАКЛИФ - шошилинг!
                     </p>
                 </div>
-                
-                <style>
-                    @keyframes pulse {
-                        0%, 100% { opacity: 1; }
-                        50% { opacity: 0.7; }
-                    }
-                </style>
             </div>
             
             <!-- ОТЗЫВЫ -->
@@ -631,6 +1037,4 @@
         </div>
     </div>
 </body>
-
 </html>
-
