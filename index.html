@@ -13,56 +13,134 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             padding: 40px 20px;
             line-height: 1.6;
+            position: relative;
+        }
+        
+        /* Анимированный фон */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 107, 107, 0.1) 0%, transparent 50%);
+            z-index: 0;
+            animation: backgroundMove 20s ease infinite;
+        }
+        
+        @keyframes backgroundMove {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 30px;
+            box-shadow: 
+                0 30px 90px rgba(0,0,0,0.3),
+                0 0 1px rgba(255,255,255,0.3) inset;
             overflow: hidden;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
         }
         
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 50px 40px;
+            padding: 60px 40px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: headerGlow 15s linear infinite;
+        }
+        
+        @keyframes headerGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: -1px;
+            position: relative;
+            z-index: 1;
         }
         
         .header p {
-            font-size: 1.2em;
-            opacity: 0.9;
+            font-size: 1.3em;
+            opacity: 0.95;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
         }
         
         .content {
-            padding: 50px 40px;
+            padding: 60px 40px;
         }
         
         .course {
-            margin-bottom: 60px;
+            margin-bottom: 70px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .course:nth-child(2) {
+            animation-delay: 0.2s;
         }
         
         .course-header {
             display: flex;
             align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #667eea;
+            margin-bottom: 35px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .course-header:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
         }
         
         .course-icon {
-            font-size: 3em;
-            margin-right: 20px;
+            font-size: 3.5em;
+            margin-right: 25px;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
         }
         
         .course-title {
@@ -70,37 +148,57 @@
         }
         
         .course-title h2 {
-            font-size: 2em;
-            color: #333;
-            margin-bottom: 10px;
+            font-size: 2.2em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            font-weight: 600;
         }
         
         .course-info {
             display: flex;
-            gap: 30px;
+            gap: 15px;
             flex-wrap: wrap;
         }
         
         .info-badge {
-            background: #f0f4ff;
-            padding: 8px 16px;
-            border-radius: 20px;
-            color: #667eea;
-            font-weight: 600;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: white;
+            font-weight: 500;
+            font-size: 0.95em;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .info-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(102, 126, 234, 0.4);
         }
         
         .module {
-            background: #f8f9ff;
-            padding: 30px;
-            border-radius: 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+            padding: 35px;
+            border-radius: 20px;
             margin-bottom: 25px;
             border-left: 5px solid #667eea;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .module:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
         }
         
         .module h3 {
             color: #667eea;
-            font-size: 1.5em;
-            margin-bottom: 20px;
+            font-size: 1.6em;
+            margin-bottom: 25px;
+            font-weight: 600;
         }
         
         .module ul {
@@ -109,10 +207,16 @@
         }
         
         .module li {
-            padding: 12px 0;
-            padding-left: 30px;
+            padding: 14px 0;
+            padding-left: 35px;
             position: relative;
             color: #555;
+            transition: all 0.2s ease;
+        }
+        
+        .module li:hover {
+            color: #667eea;
+            padding-left: 40px;
         }
         
         .module li:before {
@@ -121,85 +225,130 @@
             left: 0;
             color: #667eea;
             font-weight: bold;
-            font-size: 1.2em;
+            font-size: 1.3em;
+            transition: all 0.2s ease;
+        }
+        
+        .module li:hover:before {
+            transform: scale(1.2);
         }
         
         .divider {
-            height: 3px;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            margin: 60px 0;
-            border-radius: 2px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #667eea 50%, transparent 100%);
+            margin: 70px 0;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: '✦';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            color: #667eea;
+            padding: 10px;
+            font-size: 1.5em;
         }
         
         .pricing-section {
-            background: #f8f9ff;
-            padding: 50px 40px;
-            border-radius: 15px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            padding: 60px 40px;
+            border-radius: 25px;
             margin-top: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
         }
         
         .pricing-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
         
         .pricing-header h2 {
-            color: #667eea;
-            font-size: 2.5em;
-            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
         
         .pricing-header p {
             color: #666;
             font-size: 1.2em;
+            font-weight: 300;
         }
         
         .pricing-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
         
         .price-card {
             background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            border: 3px solid #e0e0e0;
+            border-radius: 25px;
+            padding: 45px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border: 2px solid rgba(102, 126, 234, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
         
         .price-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 70px rgba(102, 126, 234, 0.25);
             border-color: #667eea;
-            box-shadow: 0 15px 40px rgba(102,126,234,0.3);
+        }
+        
+        .price-card:hover::before {
+            opacity: 1;
         }
         
         .price-card-icon {
-            font-size: 4em;
+            font-size: 4.5em;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
         }
         
         .price-card h3 {
             color: #333;
-            font-size: 1.8em;
-            margin-bottom: 25px;
+            font-size: 1.9em;
+            margin-bottom: 30px;
             text-align: center;
+            font-weight: 600;
         }
         
         .includes-box {
-            background: #f0f4ff;
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 30px;
+            background: linear-gradient(135deg, #f0f4ff 0%, #f8f9ff 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 35px;
+            border: 1px solid rgba(102, 126, 234, 0.1);
         }
         
         .includes-box h4 {
             color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.2em;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            font-weight: 600;
         }
         
         .includes-box ul {
@@ -208,11 +357,17 @@
         }
         
         .includes-box li {
-            padding: 10px 0;
-            padding-left: 30px;
+            padding: 12px 0;
+            padding-left: 35px;
             position: relative;
             color: #555;
             font-size: 1.05em;
+            transition: all 0.2s ease;
+        }
+        
+        .includes-box li:hover {
+            color: #667eea;
+            padding-left: 40px;
         }
         
         .includes-box li:before {
@@ -221,47 +376,96 @@
             left: 0;
             color: #667eea;
             font-weight: bold;
-            font-size: 1.3em;
+            font-size: 1.4em;
         }
         
         .main-price {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 35px;
-            border-radius: 15px;
+            padding: 40px;
+            border-radius: 20px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .main-price::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: priceGlow 10s linear infinite;
+        }
+        
+        @keyframes priceGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         .main-price .price-label {
             color: rgba(255,255,255,0.95);
             font-size: 1.2em;
             margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
         }
         
         .main-price .price-value {
             color: white;
-            font-size: 2.5em;
-            font-weight: bold;
+            font-size: 2.8em;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -1px;
         }
         
         .webinar-section {
             background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
             color: white;
-            padding: 40px;
-            border-radius: 20px;
+            padding: 50px 45px;
+            border-radius: 25px;
             text-align: center;
-            margin-top: 40px;
+            margin-top: 50px;
+            box-shadow: 0 20px 60px rgba(255, 107, 107, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .webinar-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: webinarGlow 20s linear infinite;
+        }
+        
+        @keyframes webinarGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         .webinar-section h3 {
-            font-size: 2em;
-            margin-bottom: 15px;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            font-weight: 600;
         }
         
         .webinar-section p {
             font-size: 1.3em;
             opacity: 0.95;
             margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
         }
         
         .webinar-buttons {
@@ -269,19 +473,22 @@
             gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 25px;
+            margin-top: 35px;
+            position: relative;
+            z-index: 1;
         }
         
         .btn {
-            padding: 15px 35px;
-            border-radius: 30px;
+            padding: 18px 40px;
+            border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             font-size: 1.1em;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
         .btn-white {
@@ -290,8 +497,9 @@
         }
         
         .btn-white:hover {
-            background: #f0f0f0;
-            transform: scale(1.05);
+            background: #f8f8f8;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
         
         .btn-outline {
@@ -303,69 +511,79 @@
         .btn-outline:hover {
             background: white;
             color: #ff6b6b;
-            transform: scale(1.05);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
         
         .reviews-section {
-            padding: 50px 40px;
+            padding: 60px 40px;
             background: white;
         }
         
         .reviews-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
         
         .reviews-header h2 {
-            color: #667eea;
-            font-size: 2.5em;
-            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
         
         .reviews-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 35px;
         }
         
         .review-card {
-            background: #f8f9ff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
         }
         
-        .review-image {
-            width: 100%;
-            border-radius: 10px;
-            margin-bottom: 20px;
+        .review-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.2);
         }
         
         .review-text {
             color: #555;
             font-size: 1.05em;
-            line-height: 1.6;
+            line-height: 1.7;
             font-style: italic;
+            margin-bottom: 20px;
         }
         
         .review-author {
-            margin-top: 15px;
-            font-weight: bold;
+            font-weight: 600;
             color: #667eea;
+            font-size: 1.05em;
         }
         
         .webinar-inner-box {
-            background: rgba(255,255,255,0.25);
-            padding: 35px;
-            border-radius: 20px;
-            margin: 30px 0;
+            background: rgba(255,255,255,0.15);
+            padding: 40px;
+            border-radius: 25px;
+            margin: 35px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 1;
         }
         
         .webinar-gift-list {
             list-style: none;
             padding: 0;
-            margin: 25px 0;
+            margin: 30px 0;
             text-align: left;
             max-width: 700px;
             margin-left: auto;
@@ -373,9 +591,14 @@
         }
         
         .webinar-gift-list li {
-            padding: 15px 0;
+            padding: 18px 0;
             font-size: 1.25em;
-            border-bottom: 1px solid rgba(255,255,255,0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.2s ease;
+        }
+        
+        .webinar-gift-list li:hover {
+            padding-left: 10px;
         }
         
         .webinar-gift-list li:last-child {
@@ -383,59 +606,65 @@
         }
         
         .webinar-attention-box {
-            background: rgba(255,255,255,0.2);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
-            border: 3px dashed rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.15);
+            padding: 35px;
+            border-radius: 20px;
+            margin: 35px 0;
+            border: 3px dashed rgba(255,255,255,0.3);
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
         }
         
         .webinar-info-box {
-            background: rgba(255,255,255,0.2);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 30px 0;
+            background: rgba(255,255,255,0.15);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 35px 0;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
         }
         
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
         }
         
-        /* УЛУЧШЕННАЯ МОБИЛЬНАЯ АДАПТАЦИЯ */
+        /* МОБИЛЬНАЯ АДАПТАЦИЯ */
         
-        /* Планшеты и маленькие ноутбуки */
         @media (max-width: 1024px) {
             .pricing-cards {
                 grid-template-columns: 1fr;
             }
         }
         
-        /* Планшеты в портретной ориентации */
         @media (max-width: 768px) {
             body {
                 padding: 20px 10px;
             }
             
             .header {
-                padding: 30px 20px;
+                padding: 40px 25px;
             }
             
             .header h1 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
             
             .header p {
-                font-size: 1em;
+                font-size: 1.1em;
             }
             
             .content {
-                padding: 30px 20px;
+                padding: 35px 25px;
             }
             
             .course-header {
                 flex-direction: column;
                 align-items: flex-start;
+                padding: 20px;
             }
             
             .course-icon {
@@ -445,7 +674,7 @@
             }
             
             .course-title h2 {
-                font-size: 1.5em;
+                font-size: 1.7em;
             }
             
             .course-info {
@@ -454,61 +683,61 @@
             
             .info-badge {
                 font-size: 0.9em;
-                padding: 6px 12px;
+                padding: 8px 15px;
             }
             
             .module {
-                padding: 20px;
+                padding: 25px;
             }
             
             .module h3 {
-                font-size: 1.3em;
+                font-size: 1.4em;
             }
             
             .module li {
                 font-size: 0.95em;
-                padding: 10px 0;
-                padding-left: 25px;
+                padding: 12px 0;
+                padding-left: 30px;
             }
             
             .pricing-section {
-                padding: 30px 20px;
+                padding: 35px 25px;
             }
             
             .pricing-header h2 {
-                font-size: 2em;
+                font-size: 2.2em;
             }
             
             .pricing-header p {
-                font-size: 1em;
+                font-size: 1.1em;
             }
             
             .price-card {
-                padding: 25px;
+                padding: 30px;
             }
             
             .price-card h3 {
-                font-size: 1.5em;
+                font-size: 1.6em;
             }
             
             .includes-box {
-                padding: 20px;
-            }
-            
-            .main-price {
                 padding: 25px;
             }
             
+            .main-price {
+                padding: 30px;
+            }
+            
             .main-price .price-value {
-                font-size: 2em;
+                font-size: 2.2em;
             }
             
             .webinar-section {
-                padding: 25px 20px;
+                padding: 35px 25px;
             }
             
             .webinar-section h3 {
-                font-size: 1.5em;
+                font-size: 1.7em;
             }
             
             .webinar-section p {
@@ -516,12 +745,12 @@
             }
             
             .webinar-inner-box {
-                padding: 20px;
+                padding: 25px;
             }
             
             .webinar-gift-list li {
                 font-size: 1.1em;
-                padding: 12px 0;
+                padding: 15px 0;
             }
             
             .webinar-buttons {
@@ -532,266 +761,124 @@
             .btn {
                 width: 100%;
                 justify-content: center;
-                padding: 12px 25px;
+                padding: 15px 30px;
                 font-size: 1em;
             }
             
             .reviews-section {
-                padding: 30px 20px;
+                padding: 35px 25px;
             }
             
             .reviews-header h2 {
-                font-size: 2em;
+                font-size: 2.2em;
             }
             
             .reviews-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 25px;
             }
             
             .divider {
-                margin: 40px 0;
+                margin: 50px 0;
             }
         }
         
-        /* Мобильные телефоны */
         @media (max-width: 480px) {
             body {
                 padding: 10px 5px;
             }
             
             .container {
-                border-radius: 15px;
+                border-radius: 20px;
             }
             
             .header {
-                padding: 20px 15px;
-                border-radius: 15px 15px 0 0;
+                padding: 30px 20px;
             }
             
             .header h1 {
-                font-size: 1.5em;
-                line-height: 1.3;
+                font-size: 1.6em;
             }
             
             .header p {
-                font-size: 0.9em;
+                font-size: 1em;
             }
             
             .content {
-                padding: 20px 15px;
+                padding: 25px 20px;
             }
             
             .course-icon {
-                font-size: 2em;
+                font-size: 2.2em;
             }
             
             .course-title h2 {
-                font-size: 1.3em;
-            }
-            
-            .info-badge {
-                font-size: 0.85em;
-                padding: 5px 10px;
+                font-size: 1.4em;
             }
             
             .module {
-                padding: 15px;
-                border-radius: 10px;
+                padding: 20px;
             }
             
             .module h3 {
-                font-size: 1.2em;
-                margin-bottom: 15px;
+                font-size: 1.3em;
             }
             
             .module li {
                 font-size: 0.9em;
-                padding: 8px 0;
-                padding-left: 22px;
-            }
-            
-            .module li:before {
-                font-size: 1em;
             }
             
             .pricing-section {
-                padding: 20px 15px;
-                border-radius: 10px;
-            }
-            
-            .pricing-header {
-                margin-bottom: 30px;
+                padding: 25px 20px;
             }
             
             .pricing-header h2 {
-                font-size: 1.6em;
-            }
-            
-            .pricing-header p {
-                font-size: 0.95em;
-            }
-            
-            .pricing-cards {
-                gap: 25px;
+                font-size: 1.8em;
             }
             
             .price-card {
-                padding: 20px;
-                border-radius: 15px;
-            }
-            
-            .price-card-icon {
-                font-size: 3em;
+                padding: 25px;
             }
             
             .price-card h3 {
-                font-size: 1.3em;
-                margin-bottom: 20px;
-            }
-            
-            .includes-box {
-                padding: 15px;
-            }
-            
-            .includes-box h4 {
-                font-size: 1.1em;
-            }
-            
-            .includes-box li {
-                font-size: 0.95em;
-                padding: 8px 0;
-                padding-left: 25px;
-            }
-            
-            .main-price {
-                padding: 20px;
-            }
-            
-            .main-price .price-label {
-                font-size: 1em;
+                font-size: 1.4em;
             }
             
             .main-price .price-value {
-                font-size: 1.6em;
+                font-size: 1.8em;
             }
             
             .webinar-section {
-                padding: 20px 15px;
-                border-radius: 15px;
+                padding: 25px 20px;
             }
             
             .webinar-section h3 {
-                font-size: 1.3em;
-                margin-bottom: 10px;
-            }
-            
-            .webinar-section p {
-                font-size: 1em;
-                margin-bottom: 15px;
-            }
-            
-            .webinar-inner-box {
-                padding: 15px;
-                margin: 20px 0;
+                font-size: 1.4em;
             }
             
             .webinar-inner-box p:first-child {
-                font-size: 1.5em !important;
-            }
-            
-            .webinar-inner-box p:nth-child(2) {
-                font-size: 1.1em !important;
-            }
-            
-            .webinar-gift-list {
-                margin: 15px 0;
+                font-size: 1.6em !important;
             }
             
             .webinar-gift-list li {
                 font-size: 1em;
-                padding: 10px 0;
-            }
-            
-            .webinar-attention-box {
-                padding: 20px 15px;
-            }
-            
-            .webinar-attention-box p {
-                font-size: 1em !important;
-            }
-            
-            .webinar-info-box {
-                padding: 15px;
-            }
-            
-            .webinar-info-box p {
-                font-size: 0.95em !important;
             }
             
             .btn {
-                padding: 12px 20px;
+                padding: 12px 25px;
                 font-size: 0.95em;
-                gap: 8px;
             }
             
             .reviews-section {
-                padding: 20px 15px;
-            }
-            
-            .reviews-header {
-                margin-bottom: 30px;
+                padding: 25px 20px;
             }
             
             .reviews-header h2 {
-                font-size: 1.6em;
-            }
-            
-            .reviews-header p {
-                font-size: 0.95em;
+                font-size: 1.8em;
             }
             
             .review-card {
-                padding: 20px;
-            }
-            
-            .review-text {
-                font-size: 0.95em;
-            }
-            
-            .divider {
-                margin: 30px 0;
-            }
-        }
-        
-        /* Очень маленькие экраны */
-        @media (max-width: 360px) {
-            .header h1 {
-                font-size: 1.3em;
-            }
-            
-            .course-title h2 {
-                font-size: 1.2em;
-            }
-            
-            .module h3 {
-                font-size: 1.1em;
-            }
-            
-            .pricing-header h2 {
-                font-size: 1.4em;
-            }
-            
-            .price-card h3 {
-                font-size: 1.2em;
-            }
-            
-            .main-price .price-value {
-                font-size: 1.4em;
-            }
-            
-            .webinar-section h3 {
-                font-size: 1.2em;
+                padding: 25px;
             }
         }
     </style>
